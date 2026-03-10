@@ -3,40 +3,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 def train_logistic_regression(X_train, y_train):
-    """
-    Train a Logistic Regression model on the training data.
-    
-    Args:
-        X_train (DataFrame): Training features.
-        y_train (Series): Training labels.
-    
-    Returns:
-        model: Trained LogisticRegression model.
-    """
-    # TODO: Initialize LogisticRegression with max_iter=1000
-    # TODO: Fit the model using X_train and y_train
-    # TODO: Return the trained model
     model = LogisticRegression(max_iter=1000)
     model.fit(X_train,y_train)
     return model
 
 def evaluate_model(model, X_test, y_test):
-    """
-    Evaluate the trained model on the test set and print metrics.
-    
-    Args:
-        model: Trained LogisticRegression model.
-        X_test (DataFrame): Testing features.
-        y_test (Series): True testing labels.
-    
-    Returns:
-        dict: Dictionary containing accuracy, confusion matrix, and classification report.
-    """
-    # TODO: Predict target values using X_test
-    # TODO: Compute accuracy score
-    # TODO: Generate confusion matrix
-    # TODO: Create classification report (precision, recall, f1)
-    # TODO: Return all metrics in a dictionary (accuracy, confusion_matrix, classification_report)
     y_pred = model.predict(X_test)
     accuracy=accuracy_score(y_test,y_pred)
     confusion=confusion_matrix(y_test,y_pred)
@@ -47,19 +18,6 @@ def evaluate_model(model, X_test, y_test):
     return metrics
 
 def predict_loan_approval(new_applicant, model):
-    """
-    Predict loan approval status for a new applicant using the trained model.
-    
-    Args:
-        new_applicant (dict): Dictionary of applicant's feature values.
-        model: Trained LogisticRegression model.
-    
-    Returns:
-        str: "Approved" or "Not Approved" based on prediction.
-    """
-    # TODO: Convert input dictionary to DataFrame
-    # TODO: Use the trained model to predict the class (0 or 1)
-    # TODO: Return "Approved" if class is 1 else "Not Approved"
     df_new=pd.DataFrame([new_applicant])
     prediction=model.predict(df_new)[0]
     if prediction==1:
